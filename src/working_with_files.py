@@ -33,6 +33,7 @@ class WorkingFileVacanciesJSON(WorkingWithVacancyDBabc):
 
     @property
     def get_data(self) -> list[Vacancy]:
+        """Метод получения всех хранящихся в файле данных в формате списка экземпляров класс Vacancy"""
         if not self.__data:
             self.read_from()
         return self.__data
@@ -50,7 +51,7 @@ class WorkingFileVacanciesJSON(WorkingWithVacancyDBabc):
             json.dump(list_vac, f, ensure_ascii=False)
 
     def read_from(self) -> bool:
-        """Метод выполняет чтение данный из JSON-файла в self.__data в формате списка с типом Vacancy.
+        """Метод выполняет чтение данный из JSON-файла в self.__data в формате списка экземпляров класса Vacancy.
         В случае удачи вернет True, иначе False"""
         self.__data = []
         if not os.path.isfile(self.__file):
@@ -89,7 +90,7 @@ class WorkingFileVacanciesJSON(WorkingWithVacancyDBabc):
         return counter
 
     def del_data(self, id: str) -> bool:
-        """Метод удаляет данные из JSON-файла по id. * - удалить все.
+        """Метод удаляет данные из JSON-файла по id. * - удалить все. id должен быть типа str.
         Возвращает True если удачно, иначе False"""
         if id == "*":
             self.__data = []
